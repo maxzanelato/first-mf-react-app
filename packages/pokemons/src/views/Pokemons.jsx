@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { AppBar, Box, Container, Grid } from '@material-ui/core';
-import { usePokemon } from 'data/pokemon';
-import SearchBar from 'data/SearchBar';
 
 import Logo from '../components/Logo';
+import SearchBar from 'data/SearchBar';
+import { usePokemon } from 'data/pokemon';
 import CardGrid from '../components/CardGrid';
 
 const Pokemons = () => {

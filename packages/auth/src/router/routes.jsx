@@ -1,8 +1,9 @@
 import React, { lazy } from 'react';
+
 import PrivateRoute from './PrivateRoute';
 
-const Login = lazy(() => import('../views/Login'));
-const Authenticated = lazy(() => import('../views/Authenticated'));
+const Login = lazy(() => import('../views/Login/Login'));
+const Authenticated = lazy(() => import('../views/Authenticated/Authenticated'));
 
 const routes = (opt = { redirectWhenSignIn: '/authenticated' }) => {
   const { redirectWhenSignIn } = opt;

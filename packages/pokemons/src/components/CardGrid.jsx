@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import PokeballLoading from './PokeballLoading.js';
-import PokemonCard from './PokemonCard';
-import EmptyResult from './EmptyResult';
+import PokemonCard from './PokemonCard.jsx';
+import EmptyResult from './EmptyResult.jsx';
+import PokeballLoading from './PokeballLoading';
 
 const CardGridContainer = styled.div`
   display: unset;

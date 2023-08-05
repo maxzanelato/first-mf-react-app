@@ -1,4 +1,5 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback } from 'react';
+
 import DelayedField from './DelayedField';
 import { usePokemon } from '../hooks/pokemon';
 

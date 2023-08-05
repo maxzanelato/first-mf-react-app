@@ -1,8 +1,8 @@
 import React, { Fragment, Suspense } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import authRoutes from 'auth/routes';
 
 import routes from './routes';
+import authRoutes from 'auth/routes';
 
 const internalAuthRoutes = authRoutes({ redirectWhenSignIn: '/pokemons' });
 const pokemonsRoutes = routes();

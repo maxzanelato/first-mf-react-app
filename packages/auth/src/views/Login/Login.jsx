@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Paper } from '@material-ui/core';
 
-import LoginContainer from '../../styles/LoginContainer';
 import Logo from '../../components/Logo';
-import LoginForm from '../../components/LoginForm';
 import { useAuth } from '../../hooks/auth';
+import LoginForm from '../../components/LoginForm';
+import LoginContainer from '../../styles/LoginContainer';
 
 const Login = ({ redirectWhenSignIn, history }) => {
   const { authenticated } = useAuth();

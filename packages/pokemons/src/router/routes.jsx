@@ -1,4 +1,5 @@
 import React, { lazy } from 'react';
+
 import PrivateRoute from 'auth/PrivateRoute';
 
 const Pokemons = lazy(() => import('../views/Pokemons'));

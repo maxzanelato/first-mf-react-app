@@ -1,4 +1,5 @@
 import React, { lazy } from 'react';
+
 import PrivateRoute from 'auth/PrivateRoute';
 
 const Search = lazy(() => import('../views/Search'));

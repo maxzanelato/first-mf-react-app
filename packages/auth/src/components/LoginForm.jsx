@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import { OutlinedInput, TextField } from '@material-ui/core';
-import { useFormik } from 'formik';
+import React from 'react';
 import * as Yup from 'yup';
+import { useFormik } from 'formik';
+import { TextField } from '@material-ui/core';
 
 import Button from './Button';
-import FormContainer from '../styles/FormContainer';
 import { useAuth } from '../hooks/auth';
+import FormContainer from '../styles/FormContainer';
 
 const LoginFormSchema = Yup.object().shape({
-  email: Yup.string().email('Email inválido').required('Campo obrigatório'),
+  email: Yup.string().email('E-mail inválido').required('Campo obrigatório'),
   password: Yup.string().required('Campo obrigatório'),
 });
 

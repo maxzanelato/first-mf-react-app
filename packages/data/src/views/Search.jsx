@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Box, Container, Grid } from '@material-ui/core';
+
 import SearchBar from '../components/SearchBar';
-import PokeballLoading from '../components/PokeballLoading.js';
 import { usePokemon } from '../hooks/pokemon';
+import PokeballLoading from '../components/PokeballLoading.js/PokeballLoading.jsx';
 
 const Search = () => {
   const { pokemons, loading } = usePokemon();

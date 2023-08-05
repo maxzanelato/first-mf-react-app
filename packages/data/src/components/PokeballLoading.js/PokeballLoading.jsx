@@ -1,6 +1,7 @@
 import React from 'react';
-import pokeball from './pokeball.gif';
 import styled from 'styled-components';
+
+import pokeball from './pokeball.gif';
 
 const PokeballLoadingContainer = styled.div`
   display: unset;

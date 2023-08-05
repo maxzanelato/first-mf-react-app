@@ -1,5 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
+
 import LogoContainer from './LogoContainer';
 
 const LoginContainer = styled.div`
