@@ -1,15 +1,20 @@
-import React, { lazy } from 'react';
+import React from 'react';
 
 import PrivateRoute from 'auth/PrivateRoute';
-
-const Search = lazy(() => import('../views/Search'));
 
 const routes = () => {
   return [
     {
       path: '/search',
-      component: (props) => <PrivateRoute {...props} component={Search} />,
-      exact: true,
+      async lazy() {
+        let { default: Search } = await import("../views/Search");
+
+        return { element: (
+          <PrivateRoute>
+            <Search />
+          </PrivateRoute>
+        ) };
+      }
     },
   ];
 };

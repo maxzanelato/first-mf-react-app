@@ -1,27 +1,37 @@
-import React, { lazy } from 'react';
+import React from 'react';
 
 import PrivateRoute from './PrivateRoute';
 
-const Login = lazy(() => import('../views/Login/Login'));
-const Authenticated = lazy(() => import('../views/Authenticated/Authenticated'));
-
-const routes = (opt = { redirectWhenSignIn: '/authenticated' }) => {
-  const { redirectWhenSignIn } = opt;
-
+const routes = (redirectTo = '/authenticated') => {
   return [
     {
       path: '/login',
-      component: (props) => (
-        <Login {...props} redirectWhenSignIn={redirectWhenSignIn} />
-      ),
-      exact: true,
+      async lazy() {
+        let { default: Login } = await import("../views/Login");
+        return { element: (
+          <Login redirectTo={redirectTo} />
+        ) };
+      }
     },
     {
       path: '/authenticated',
-      component: (props) => (
-        <PrivateRoute {...props} component={Authenticated} />
-      ),
-      exact: true,
+      async lazy() {
+        let { default: Authenticated } = await import("../views/Authenticated");
+        return { element: (
+          <PrivateRoute>
+            <Authenticated />
+          </PrivateRoute>
+        ) };
+      }
+    },
+    {
+      path: '*',
+      async lazy() {
+        let { default: Login } = await import("../views/Login");
+        return { element: (
+          <Login redirectTo={redirectTo} />
+        ) };
+      }
     },
   ];
 };

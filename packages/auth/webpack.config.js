@@ -107,6 +107,7 @@ module.exports = (_, args) => {
           './routes': './src/router/routes',
           './PrivateRoute': './src/router/PrivateRoute',
           './auth': './src/hooks/auth',
+          './RouteFallback': './src/components/RouteFallback',
         },
         remotes: {},
         shared: {

@@ -1,15 +1,21 @@
-import React, { lazy } from 'react';
+import React from 'react';
 
 import PrivateRoute from 'auth/PrivateRoute';
 
-const Pokemons = lazy(() => import('../views/Pokemons'));
 
 const routes = () => {
   return [
     {
       path: '/pokemons',
-      component: (props) => <PrivateRoute {...props} component={Pokemons} />,
-      exact: true,
+      async lazy() {
+        let { default: Pokemons } = await import("../views/Pokemons");
+
+        return { element: (
+          <PrivateRoute>
+            <Pokemons />
+          </PrivateRoute>
+        ) };
+      }
     },
   ];
 };

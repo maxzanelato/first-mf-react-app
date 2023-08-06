@@ -1,8 +1,8 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AuthProvider from 'auth/AuthProvider';
 
 import Router from './router/Router';
+import { AuthProvider } from 'auth/auth';
 import { PokemonProvider } from './hooks/pokemon';
 
 function App() {

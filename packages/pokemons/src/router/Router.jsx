@@ -1,55 +1,19 @@
-import React, { Fragment, Suspense } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import React from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import routes from './routes';
 import authRoutes from 'auth/routes';
+import { RouteFallback } from 'auth/RouteFallback';
 
-const internalAuthRoutes = authRoutes({ redirectWhenSignIn: '/pokemons' });
 const pokemonsRoutes = routes();
+const internalAuthRoutes = authRoutes('/pokemons');
+const fullRoutes = internalAuthRoutes.concat(pokemonsRoutes);
 
 const Router = () => {
+  const browserRouter = createBrowserRouter(fullRoutes);
+
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <Fragment>
-        <Suspense
-          fallback={
-            <div
-              style={{
-                width: '100%',
-                height: '100vh',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <div>Carregando...</div>
-            </div>
-          }
-        >
-          <Switch>
-            {internalAuthRoutes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                component={route.component}
-                exact={route.exact}
-              />
-            ))}
-
-            {pokemonsRoutes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                component={route.component}
-                exact={route.exact}
-              />
-            ))}
-
-            <Redirect to={'/pokemons'} />
-          </Switch>
-        </Suspense>
-      </Fragment>
-    </BrowserRouter>
+    <RouterProvider router={browserRouter} fallbackElement={<RouteFallback />} />
   );
 };
 

@@ -1,22 +1,17 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { useLocation, Navigate } from 'react-router-dom';
 
 import { useAuth } from '../hooks/auth';
 
-const PrivateRoute = ({ children, component, ...rest }) => {
+const PrivateRoute = ({ children }) => {
+  let location = useLocation();
   const { authenticated } = useAuth();
 
-  const render = () => {
-    return authenticated ? (
-      <Route {...rest} component={component}>
-        {children}
-      </Route>
-    ) : (
-      <Redirect to="/login" />
-    );
-  };
+  if(!authenticated) {
+    return <Navigate to="/login" state={{ from: location }} replace />
+  }
 
-  return render();
+  return children;
 };
 
 export default PrivateRoute;

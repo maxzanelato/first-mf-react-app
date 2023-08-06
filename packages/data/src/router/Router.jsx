@@ -1,55 +1,19 @@
-import React, { Fragment, Suspense } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import routes from './routes';
 import authRoutes from 'auth/routes';
+import { RouteFallback } from 'auth/RouteFallback';
 
-const internalAuthRoutes = authRoutes({ redirectWhenSignIn: '/search' });
 const dataRoutes = routes();
+const internalAuthRoutes = authRoutes('/search');
+const fullRoutes = internalAuthRoutes.concat(dataRoutes)
 
 const Router = () => {
+  const browserRouter = createBrowserRouter(fullRoutes);
+
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <Fragment>
-        <Suspense
-          fallback={
-            <div
-              style={{
-                width: '100%',
-                height: '100vh',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <div>Carregando...</div>
-            </div>
-          }
-        >
-          <Switch>
-            {internalAuthRoutes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                component={route.component}
-                exact={route.exact}
-              />
-            ))}
-
-            {dataRoutes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                component={route.component}
-                exact={route.exact}
-              />
-            ))}
-
-            <Redirect to={'/search'} />
-          </Switch>
-        </Suspense>
-      </Fragment>
-    </BrowserRouter>
+    <RouterProvider router={browserRouter} fallbackElement={<RouteFallback />} />
   );
 };
 

@@ -8,7 +8,6 @@ const SearchBar = () => {
 
   const search = useCallback(
     ({ target }) => {
-      console.log(`Target here ${target.value}`);
       fetch({ query: target.value }).catch((e) => alert(e));
     },
     [fetch],
